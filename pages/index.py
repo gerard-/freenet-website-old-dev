@@ -1,17 +1,18 @@
 # Python code copyright Gerard Krol, license: MIT
 # HTML copyright DesignBootstrap, Gerard Krol, license: MIT
-import string
-import markdown
 import pages.news as news
 from pages.common import *
 
 site_brand = "Freenet"
 
+
 class HomeSection(Section):
+
     def __init__(self):
         self.slug = "home"
         self.title = ""
-    def generate(self): # override the generate function as this is not a normal section
+
+    def generate(self):
         def slider_item(title, text, active=""):
             template = """
     <div class="item $active">
@@ -23,80 +24,63 @@ class HomeSection(Section):
         </p>
     </div>
     """
-            return string.Template(template).substitute(title=title, text=text.strip().replace("\n","<br/>"), active=active) # FIXME: user markdown
+            return string.Template(template).substitute(
+                title=title,
+                text=md(text),
+                active=active)
+
         sliders = [
             # Slider items copyright Gerard Krol, licensed GFDL/CC-BY-SA 4.0/GPLv2+
-            slider_item(_("Avoid Censorship"), _("""
-                    Freenet allows you to freely share information
-                    without any person, organization or country able
-                    to block it. Freenet helps you to remain anonymous.
-                    This allows you to communicate without fear.
-                """), "active"),
-            slider_item(_("Improve the World"), _("""
-                    By using Freenet from the "free world" you
-                    help people in oppressive regimes share information.
-                    The more people use Freenet the easier it will
-                    be to obtain. Using it will also be less suspicious.
-                """)),
-            slider_item(_("Save your (Childrens) Future"), _("""
-                    Even if you live in a democratic country a
-                    dictator only needs a few years to grab power.
-                    Are you prepared?
-                    Freenet might save lives!
-                """)),
-#            slider_item(_("Explore the Dark Web"), _("""
-#                    What happens when people get total anonymity?
-#                    Does evil surface? Or are most people inherently good?
-#                    Freenet contains a varied amount of content,
-#                    be careful what links you click though!
-#                """)),
-            slider_item(_("Meet New People"), _("""
-                    People from all over the world
-                    use Freenet to communicate.
-                    Some of these do so anonymously.
-                    You would never hear their voices in the open.
-                """)),
-            slider_item(_("Experiment with Exciting New Technology"), _("""
-                    Freenet is on the cutting edge of distributed
-                    routing research. The data storage provided
-                    by Freenet is a proving ground for a number
-                    of new distributed systems.
-                """)),
+            slider_item(_("Avoid Censorship"), md(_("""
+Freenet is a platform for censorship-resistant communication and publishing.
+It helps you to remain anonymous, and communicate without fear.
+""")), "active"),
             slider_item(_("Host a Website"), _("""
-                    Need a website nobody can take over?
-                    That is hosted for free? That is
-                    very resistant to attacks?
-                    Just publish it on Freenet!
-                """)),
+Need a website nobody can take over? That is hosted for free? That is very
+resistant to attacks? Publish it on Freenet!
+""")),
             slider_item(_("Share Files"), _("""
-                    Dropbox? No need. Just upload
-                    the file to Freenet and a few
-                    minutes later anyone with the
-                    secret URL can access it.
-                """)),
+Upload a file to Freenet and anyone with the secret URL can access it.
+""")),
+            slider_item(_("Meet New People"), _("""
+People from all over the world use Freenet to communicate. Some of them do so
+anonymously. You might never hear their voices in the open.
+""")),
+            slider_item(_("Experiment with Exciting New Technology"), _("""
+Freenet is on the cutting edge of distributed routing research. The data
+storage provided by Freenet is a proving ground for a number of new
+distributed systems.
+""")),
+            slider_item(_("Improve the World"), _("""
+By using Freenet from the "free world" you help people in oppressive regimes
+share information. The more people use Freenet the easier it will be to
+obtain. Using it will also be less suspicious.
+""")),
         ]
         content = """
 <!--HOME SECTION START-->
-<div id="home" >
+<section id="home">
 <div class="container">
-<div class="row">
-<div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
-<div class="row">
-<div class="col-sm-12 col-md-12 col-lg-12">
-<div id="carousel-slider" data-ride="carousel" class="carousel slide  animate-in" data-anim-type="fade-in-up" data-interval="8000">
+<div class="row text-center">
+<div class="col-sm-2 col-md-2 col-lg-2">
+        <div class="item active">
+             <h4>&nbsp; &nbsp;</h4>
+             <p>&nbsp; &nbsp;</p>
+             <p>&nbsp; &nbsp;</p>
+             <p>&nbsp; &nbsp;</p>
+             <p><a href="news.html#20150211"><img src="assets/img/suma2015_badge_transparent.png" alt="SUMA Award 2014/15" /></a></p>
+        </div>
+</div>
 
+<div class="col-sm-8 col-md-8 col-lg-8">
+<div class="row">
+<div id="carousel-slider">
 <div class="carousel-inner">
 $sliders
 </div>
-
-
-</div>
-
-
 </div>
 </div>
-<div class="row animate-in" data-anim-type="fade-in-up">
-<div class="col-sm-12 col-md-12 col-lg-12 scroll-me">
+<div class="row">
 <div class="download">
 
 <p >
@@ -112,11 +96,14 @@ $tagline
 <a href="#" class="btn button-custom btn-custom-one" ><i class="fa fa-github "></i></a>
 </div>
 -->
-<a href="download.html#autostart" class=" btn button-custom btn-custom-two">$download_text</a>
+<a href="download.html#autostart" class=" btn button-custom btn-custom-two">
+    <i class="icon ion-arrow-down-a"></i>
+    $download_text
+</a>
 </div>
 </div>
 </div>
-</div>
+
 <!--DONATE SUBSECTION -->
 <div class="col-sm-2 col-md-2 col-lg-2">
         <div class="item active donate" id="donate_button">
@@ -133,14 +120,16 @@ $tagline
 </div>
 </div>
 
-</div>
+</section>
 
 <!--HOME SECTION END-->
 """
         tagline = _("Share, Chat, Browse. Anonymously.")
-        download_text = _("Get Freenet")
+        download_text = _("Download Freenet")
         donate_title = _("Please Donate")
-        donate_text = _("""Your donations pay our servers and developer. Our current funds will&nbsp;last""")
+        donate_text = md(_("""
+Your donations pay for our server and developer. Our current funds will last
+        """))
         donate_button_text = _("Donate!")
         return string.Template(content).substitute(sliders="".join(sliders),
                                                    tagline=tagline,
@@ -155,8 +144,9 @@ class ServiceSection(Section):
         self.slug = "services"
         self.title = _("What is Freenet?")
     def get_content(self):
-        def service(icon, title, text):
+        def service(icon, title, text, link):
             content = """
+<a href="$link">
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
     <div class="services-wrapper">
         <i class="$icon"></i>
@@ -164,71 +154,86 @@ class ServiceSection(Section):
         $text
     </div>
 </div>
+</a>
 """
-            return string.Template(content).substitute(icon=icon,title=title,text=text)
+            return string.Template(content).substitute(
+                icon=icon, title=title, text=text, link=link,
+            )
         services = [
              # Services items copyright Gerard Krol, licensed GFDL/CC-BY-SA 4.0/GPLv2+
             service("ion-person", _("Secret Identity"),
-                _("Create a secret identity so nobody knows who you are.")),
+                    _("Create a secret identity so nobody knows who you are."),
+                    "https://wiki.freenetproject.org/Web_of_Trust"),
             service("ion-earth", _("Browse Webpages"),
-                _("Freenet is home to webpages with topics ranging from programming to sustainable living.")),
+                    _("Freenet is home to webpages with topics ranging from programming to sustainable living."),
+                    "https://wiki.freenetproject.org/Using_Freenet#Browsing_.26_Communicating_on_Freenet"),
             service("ion-chatboxes", _("Forums"),
-                _("Ask questions and exchange ideas.")),
+                    _("Ask questions and exchange ideas."),
+                    "https://wiki.freenetproject.org/Using_Freenet#Browsing_.26_Communicating_on_Freenet"),
             service("ion-edit", _("Publish"),
-                _("Publish information while remaining anonymous.")),
+                    _("Publish information while remaining anonymous."),
+                    "documentation.html#jsite"),
             service("ion-android-cloud-done", _("Share Files"),
-                _("Easy upload & download.")),
+                    _("Easy upload & download."),
+                    "help.html#find"),
             service("ion-hammer", _("Platform"),
-                _("Write your own applications on the Freenet platform.")),
+                    _("Write your own applications on the Freenet platform."),
+                    "https://wiki.freenetproject.org/FCPv2"),
             service("ion-cube", _("Resistant"),
-                _("Freenet has been designed to be resistant to attacks and censorship.")),
+                    _("Freenet has been designed to be resistant to attacks and censorship."),
+                    "documentation.html#content"),
             service("ion-shuffle", _("Distributed"),
-                _("No central points of fallure, efficient caching of popular content.")),
+                    _("No central points of failure, efficient caching of popular content."),
+                    "documentation.html#understand"),
             service("ion-erlenmeyer-flask", _("Proven"),
-                _("Based on solid research and in practical use for 15 years.")),
+                    _("Based on solid research and in practical use for 15 years."),
+                    "about.html#papers"),
         ]
         content = """
 <!-- service start -->
-<div class="row animate-in" data-anim-type="fade-in-up">
+<div class="row">
 $services
+<div class="col-sm-12 col-md-12 col-lg-12" style="text-align: center">
+<div class="download">
+
+<p >
+$tagline
+</p>
+<!-- FIXME: become social
+<div class="social">
+<a href="#" class="btn button-custom btn-custom-one" ><i class="fa fa-facebook "></i></a>
+<a href="#" class="btn button-custom btn-custom-one" ><i class="fa fa-twitter"></i></a>
+<a href="#" class="btn button-custom btn-custom-one" ><i class="fa fa-google-plus "></i></a>
+<a href="#" class="btn button-custom btn-custom-one" ><i class="fa fa-linkedin "></i></a>
+<a href="#" class="btn button-custom btn-custom-one" ><i class="fa fa-pinterest "></i></a>
+<a href="#" class="btn button-custom btn-custom-one" ><i class="fa fa-github "></i></a>
+</div>
+-->
+<a href="download.html#autostart" class=" btn button-custom btn-custom-two">
+    <i class="icon ion-arrow-down-a"></i>
+    $download_text
+</a>
+</div>
+</div>
 </div>
 <!-- service end -->
 """
-        return string.Template(content).substitute(services="".join(services))
-    
-class IntroductionSection(Section):
-    def __init__(self):
-        self.slug = "introduction"
-        self.title = _("Introduction")
-    def get_content(self):
-        # License: GFDL (from old freenetproject.org website)
-        content = _("""
-> _"I worry about my child and the Internet all the time, even though she's too young to have logged on yet. Here's what I worry about. I worry that 10 or 15 years from now, she will come to me and say 'Daddy, where were you when they took freedom of the press away from the Internet?'"_   
-> --Mike Godwin, [Electronic Frontier Foundation](https://www.eff.org/)
-
-Freenet is free software which lets you anonymously share files, browse and publish "freesites" (web sites accessible only through Freenet) and chat on forums, without fear of censorship. Freenet is decentralised to make it less vulnerable to attack, and if used in "darknet" mode, where users only connect to their friends, is very difficult to detect.
-
-Communications by Freenet nodes are encrypted and are routed through other nodes to make it extremely difficult to determine who is requesting the information and what its content is.
-
-Users contribute to the network by giving bandwidth and a portion of their hard drive (called the "data store") for storing files. Files are automatically kept or deleted depending on how popular they are, with the least popular being discarded to make way for newer or more popular content. Files are encrypted, so generally the user cannot easily discover what is in his datastore, and hopefully can't be held accountable for it. Chat forums, websites, and search functionality, are all built on top of this distributed data store.
-
-Freenet has been downloaded over 2 million times since the project started, and used for the distribution of censored information all over the world including countries such as China and the Middle East. Ideas and concepts pioneered in Freenet have had a significant impact in the academic world. Our 2000 paper "Freenet: A Distributed Anonymous Information Storage and Retrieval System" was the most cited computer science paper of 2000 according to Citeseer, and Freenet has also inspired papers in the worlds of law and philosophy. Ian Clarke, Freenet's creator and project coordinator, was selected as one of the top 100 innovators of 2003 by MIT's Technology Review magazine.
-
-An important recent development, which very few other networks have, is the "darknet": By only connecting to people they trust, users can greatly reduce their vulnerability, and yet still connect to a global network through their friends' friends' friends and so on. This enables people to use Freenet even in places where Freenet may be illegal, makes it very difficult for governments to block it, and does not rely on tunneling to the "free world".
-
-Sounds good? [Get Freenet](download.html)
-""")
-        return text(md(content))
+        tagline = _("Share, Chat, Browse. Anonymously.")
+        download_text = _("Download Freenet")
+        return string.Template(content).substitute(services="".join(services),
+                                                   tagline=tagline,
+                                                   download_text=download_text)
     
 class NewsSection(Section):
     def __init__(self):
         self.slug = "news"
-        self.title = _("News")
+        self.title = _("Latest News")
     def get_content(self):
         # we show the most recent news items
         md_content = ""
-        for item in news.news_items():
-            md_content += "* " + item.markdown_link() + "\n"
+        news_items = news.news_items()
+        for item in news_items[:min(5, len(news_items))]:
+            md_content += item.markdown_link() + "\n\n"
         return text(md(md_content))
 
 class IndexPage(Page):
@@ -238,6 +243,5 @@ class IndexPage(Page):
         self.sections = [
             HomeSection(),
             ServiceSection(),
-            IntroductionSection(),
             NewsSection(),
             ContactSection()]

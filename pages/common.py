@@ -92,19 +92,18 @@ def head(title):
 <link href="assets/css/ionicons.css" rel="stylesheet" />
 <!-- FONT AWESOME ICONS STYLES -->
 <link href="assets/css/font-awesome.css" rel="stylesheet" />
-<!-- STYLES FOR VIEWPORT ANIMATION -->
-<link href="assets/css/animations.min.css" rel="stylesheet" />
 <!-- CUSTOM CSS -->
-<link href="assets/css/style-freenet.css" rel="stylesheet" />
+<link href="assets/css/style-freenet-2.css" rel="stylesheet" />
+<!-- SLICK CAROUSEL -->
+<!-- Kept in one directory instead of split to stay with upstream. -->
+<link rel="stylesheet" type="text/css" href="assets/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="assets/slick/slick-theme.css"/>
 <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
 <script src="assets/js/html5shiv.js"></script>
 <script src="assets/js/respond.min.js"></script>
 <![endif]-->
-
-<!-- tiny script to make the text invisible. This leaves the text visible for noscript and Freenet -->
-<script type="text/javascript" src="assets/js/textopacity.js"></script>
 
 </head>
 """
@@ -127,9 +126,10 @@ $content
 <script src="assets/js/jquery.isotope.js"></script>
 <!-- VIEWPORT ANIMATION SCRIPTS   -->
 <script src="assets/js/appear.min.js"></script>
-<script src="assets/js/animations.min.js"></script>
 <!-- CUSTOM SCRIPTS -->
 <script src="assets/js/custom.js"></script>
+<!-- SLICK CAROUSEL -->
+<script type="text/javascript" src="assets/slick/slick.min.js"></script>
 
 </body>
 """
@@ -156,10 +156,12 @@ def menu(site_menu, current_page):
         submenu_content += string.Template("""<li><a href="$link">$title</a></li>""").substitute(link=link,title=section.title.upper())
     languages = ""
     for language in settings.languages:
-        languages += string.Template("""<li><a href="../$language/$slug.html">$title</a></li>""").substitute(language=language,slug=current_page.slug,title=language.upper())
+        languages += string.Template(
+            """<li><a href="?language=$language">$title</a></li>"""
+        ).substitute(language=language, title=language.upper())
     template = """
 <!--MENU SECTION START-->
-<div class="navbar navbar-inverse navbar-fixed-top scroll-me" id="menu-section" >
+<div class="navbar navbar-inverse navbar-fixed-top" id="menu-section" >
 <div class="container">
 
 
@@ -172,7 +174,7 @@ def menu(site_menu, current_page):
 
 <div class="navbar-brand">
     <a href="index.html">
-        <img src="assets/img/logo-net-small.png" style="height: 2em;"/>
+        <img src="assets/img/logo_65_49.png" style="height: 2em;" alt="$rabbit"/>
         $brand
     </a>
 </div>
@@ -206,31 +208,35 @@ $submenu_content
 </div>
 <!--MENU SECTION END-->
 """
-    return string.Template(template).substitute(brand="FREENET", menu_content=menu_content, submenu_content=submenu_content, languages=languages)
+    return string.Template(template).substitute(
+        brand="FREENET", rabbit=_("Freenet rabbit logo"),
+        menu_content=menu_content, submenu_content=submenu_content,
+        languages=languages
+    )
 
 class ContactSection(Section):
     def __init__(self):
         self.slug = "contact"
-        self.title = _("Contact Details")
+        self.title = _("Contact")
     def get_content(self):
         template = """
-<div class="row animate-in" data-anim-type="fade-in-up">
+<div class="row">
 
 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 <div class="contact-wrapper">
-<h3>Quick Contact</h3>
-<h4><strong>$press : </strong> press%freenetproject.org </h4>
-<h4><strong>$site : </strong> support%freenetproject.org </h4>
-<h4><strong>$irc : </strong> #freenet at freenode.org </h4>
+<h3>Contact</h3>
+<h4><strong>$press : </strong><span class="e-mail" data-user="sserp" data-website="gro.tcejorpteneerf"></span></h4>
+<h4><strong>$support : </strong> support@freenetproject.org </h4>
+<h4><strong>$irc : </strong> #freenet on chat.freenode.net</h4>
 </div>
 
 </div>
 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 <div class="contact-wrapper">
-<h3>Website</h3>
+<h3>License</h3>
 $license
 <div class="footer-div" >
-&copy; 2015 Freenet <br/>
+&copy; 2015 The Freenet Project Inc<br/>
 <a href="http://www.designbootstrap.com/" target="_blank" >$design</a>
 </div>
 </div>
@@ -239,7 +245,7 @@ $license
 """
         return string.Template(template).substitute(
             press=_("Press"),
-            site=_("Site"),
+            support=_("Support"),
             irc=_("IRC"),
             license=_("Content on this website is licensed under the GNU Free Documentation License and may be available under other licenses."),
             design=_("Design by DesignBootstrap")
@@ -251,7 +257,7 @@ def section(name, title, content):
 <!--section $name start-->
 <section id="$name" >
 <div class="container">
-<div class="row text-center header animate-in" data-anim-type="fade-in-up">
+<div class="row text-center header">
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 <h3>$title</h3>
@@ -269,7 +275,7 @@ $content
 def text(content):
     template = """
 <!-- text start -->
-<div class="row animate-in" data-anim-type="fade-in-up">
+<div class="row">
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 $content
 </div>

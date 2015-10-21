@@ -1,38 +1,13 @@
-# New Freenet Website #
-
-This is a new version of the Freenet website. Its main goal is to improve the popularity of Freenet and
-to attract new contributors. The theme is [Light Wave]( http://www.designbootstrap.com/light-wave-template-bootstrap-transparent-theme/), by DesignBootstrap
-This repository contains a python application that will generate the website for all supported languages.
-
-[See it in action!](http://realitysink.com/freenet/en/)
-
-We're working towards the 1.0 release (when it will replace the official Freenet website). Take a look
-at the issues on github to see what still needs to be done. Pull requests are very welcome!
-
-Goals:
-
-- Improve the popularity of Freenet
-- Should look nice
-- Static (so it does not need a webserver and can also be hosted on Freenet)
-- Should work without Javascript and through FProxy
-- The website should be easy to translate & maintain
-
-The basic design is:
-
-- settings.py contains the supported languages and the menu definition
-- pages/*.py contain the separate pages of the site
-- assets contains css, javascript and images
-- locale contains translations
-- generate.py is the script that will turn this into a static site in output
-- Translation is done using gettext; update_pot.sh will extract all the translatable strings into freenet_site.pot
-- If you change English text in the site run update_translations.py so that all translations will get the new text. This may be a slightly
-dangerous operation as it may cause a lot of fuzzy matches.
+# Website #
 
 ## For Translators ##
 
 *Note that by contributing a translation you agree to triple license it under the GFDL, CC-BY-SA 4.0 and GPLv2+ licenses.*
 
-We might switch to Transifex soon, for now these are the steps:
+This website is being translated as the
+[website resource](https://www.transifex.com/otf/freenet/website/) on Transifex.
+
+To contribute without Transifex:
 
 * Fork this repository and create a checkout
 * Run update_po.sh from the root directory
@@ -55,6 +30,29 @@ Tips:
 
 * Markdown: https://pypi.python.org/pypi/Markdown
 * Python 3: http://python.org
+
+## Development ##
+
+To generate a single language for local development:
+
+    ./generate -l en
+
+To generate a localized version suitable for a web server with multiview:
+
+    ./generate
+
+ TODO - describe multiview; cookie config
+
+The basic design is:
+
+- settings.py contains the supported languages and the menu definition
+- pages/*.py contain the separate pages of the site
+- assets contains css, javascript and images
+- locale contains translations
+- generate.py is the script that will turn this into a static site in output
+- Translation is done using gettext; update_pot.sh will extract all the translatable strings into freenet_site.pot
+- If you change English text in the site run update_translations.py so that all translations will get the new text. This may be a slightly
+dangerous operation as it may cause a lot of fuzzy matches.
 
 ## License ##
 
@@ -123,27 +121,3 @@ Probably we'd want to us a single license later, and it is nice to already have 
 There is a lot of overlap between those licenses so you are not giving much extra away.
 
 *What is the effect of licensing content under multiple licenses?* When someone want to use the content they can choose which of the licenses to use. This gives them a lot more freedom.
-
-## Migration ##
-Migration is complete:
-
-* download.html -> download.py
-* whatis.html -> index.html#introduction
-* index.html (no unique content)
-* news.html -> news.py
-* philosophy.html -> about.html#philosophy
-* people.html -> about.html#people
-* papers.html -> about.html#papers
-* documentation.html and subpages -> documentation.py
-* link to wiki
-* faq.html -> help.html#faq
-* lists.html -> help.html#mailing-lists
-* link to uservoice
-* irc.html -> help.html#irc
-* link to "The newcomer's guide to anonymous communication on Freenet"
-* donate.html -> donate.html
-* sponsors.html -> donate.html#sponsors
-* link to store http://www.zazzle.com/freenetproject
-* developer.html -> contribute.html#developers
-* link to https://wiki.freenetproject.org/Translation
-* link to bugtracker https://bugs.freenetproject.org/my_view_page.php

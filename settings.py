@@ -8,20 +8,19 @@ from pages.about import *
 from pages.documentation import *
 from pages.donate import *
 from pages.contribute import *
-from pages.ngrouting import *
 
-languages = ["en", "nl", "es", "ru", "debug"]
+languages = ["en", "es", "fi", "fr", "hr", "it", "ja", "nl", "pt-br", "ru",
+             "zh-cn"]
 title = "Freenet"
 def create_menu():
     return [
         IndexPage(),
-        NewsPage(),
         DownloadPage(),
         AboutPage(),
+        NewsPage(),
         DocumentationPage(),
         HelpPage(),
         DonatePage(),
         DonateThanksPage(),
         ContributePage(),
-        NGRoutingPage(),
         ]

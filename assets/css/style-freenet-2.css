@@ -42,6 +42,18 @@ background-color: black;
 font-size: 160%;
 }
 
+/* Email address obfuscation. */
+.e-mail:before {
+    content: attr(data-website) "\0040" attr(data-user);
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+
+/* Allow the previous and next buttons to appear outside the div. */
+.carousel-inner {
+overflow: visible;
+}
+
 section {
 padding-top: 80px;
 padding-bottom: 40px;
@@ -64,6 +76,10 @@ border-top: 2px solid rgb(40, 141, 203);
 
 a, a:hover, a:active {
     color: #1A8EFF;
+}
+
+.services-wrapper {
+    color: #FFFFFF;
 }
 
 a:focus {
@@ -125,7 +141,7 @@ MENU SECTION STYLES
 }
 
 .navbar-inverse {
-background-color: rgba(0, 0, 0, 0.4);
+background-color: rgba(0, 0, 0, 0.8);
 border-color: transparent;
 }
 
@@ -154,7 +170,7 @@ margin: 10px 20px 10px 20px;
 }
 
 .navbar-inverse .navbar-nav-language > li > a {
-font-size: 8px;
+font-size: 10px;
 margin-left: 10px;
 color: rgb(95, 159, 208);
 z-index: 999; /* so you can actually click them */
@@ -181,7 +197,7 @@ font-family: 'Oswald', sans-serif;
 }
 
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
-border-color: transparent;
+border-color: rgb(152, 188, 225);
 }
 .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
 background-color: rgb(40, 141, 203);
@@ -207,12 +223,10 @@ padding-top: 7em;
 
 #home .donate p {
 font-style: italic;
-color: rgb(40, 141, 203);
 }
 
 #home .download {
-padding-left: 50px;
-padding-right: 20px;
+padding: inherit;
 }
 
 #home .social {
@@ -223,7 +237,7 @@ margin: 50px 20px;
 /*Carousel Slider*/
 
 #carousel-slider {
-padding: 50px 20px 5px 50px;
+padding: 50px 20px 5px 20px;
 height: 20em;
 }
 
@@ -233,7 +247,6 @@ font-family: 'Oswald', sans-serif;
 }
 
 #carousel-slider p {
-color: rgb(40, 141, 203);
 font-size: 16px;
 line-height: 25px;
 margin: 25px 20px;
@@ -299,7 +312,8 @@ Any kind of usage allowed: https://css-tricks.com/license/ */
 	  inset 0 2px 9px  rgba(255,255,255,0.3),
 	  inset 0 -2px 6px rgba(0,0,0,0.4);
 	position: relative;
-	overflow: hidden;
+	overflow: visible;
+	white-space: nowrap;
 }
 .meter > span:after, .animate > span > span {
 	content: "";
