@@ -121,3 +121,4 @@ Probably we'd want to us a single license later, and it is nice to already have 
 There is a lot of overlap between those licenses so you are not giving much extra away.
 
 *What is the effect of licensing content under multiple licenses?* When someone want to use the content they can choose which of the licenses to use. This gives them a lot more freedom.
+This is amazing.
