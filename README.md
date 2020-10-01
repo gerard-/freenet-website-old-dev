@@ -1,6 +1,5 @@
-# Website #
+# Website For Translators #
 
-## For Translators ##
 
 *Note that by contributing a translation you agree to triple license it under the GFDL, CC-BY-SA 4.0 and GPLv2+ licenses.*
 
@@ -26,7 +25,7 @@ Tips:
 * Some of the source text may have weird whitespace at the start and the end, please ignore this.
 * Note that newlines are important if they are inside a piece of text. They will end up on the site as line breaks.
 
-## Requirements ##
+## Requirements in the form of URL ##
 
 * Markdown: https://pypi.python.org/pypi/Markdown
 * Python 3: http://python.org
