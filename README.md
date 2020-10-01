@@ -43,7 +43,7 @@ To generate a localized version suitable for a web server with multiview:
 
  TODO - describe multiview; cookie config
 
-The basic design is:
+The basic design are:
 
 - settings.py contains the supported languages and the menu definition
 - pages/*.py contain the separate pages of the site
