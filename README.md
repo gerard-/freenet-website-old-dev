@@ -108,7 +108,8 @@ look will probably suit them better.
 
 *Can I help?* Sure! Please take a look at the issues on Github to see what needs to be done.
 
-*What static site generator does this use?* None, it uses it's own 30 line Python script.
+*What static site generator does this use?* 
+None, it uses it's own 30 line Python script.
 The entire template is also just Python code. If you know Python you don't have to
 learn another templating language or theming framework to modify it.
 
@@ -120,4 +121,5 @@ Also, the support for translations was annoying. Overall it didn't feel like a g
 Probably we'd want to us a single license later, and it is nice to already have permission.
 There is a lot of overlap between those licenses so you are not giving much extra away.
 
-*What is the effect of licensing content under multiple licenses?* When someone want to use the content they can choose which of the licenses to use. This gives them a lot more freedom.
+*What is the effect of licensing content under multiple licenses?* 
+When someone want to use the content they can choose which of the licenses to use. This gives them a lot more freedom.
