@@ -4,7 +4,7 @@
 
 *Note that by contributing a translation you agree to triple license it under the GFDL, CC-BY-SA 4.0 and GPLv2+ licenses.*
 
-This website is being translated as the
+This website is being translated as 
 [website resource](https://www.transifex.com/otf/freenet/website/) on Transifex.
 
 To contribute without Transifex:
@@ -31,7 +31,7 @@ Tips:
 * Markdown: https://pypi.python.org/pypi/Markdown
 * Python 3: http://python.org
 
-## Development ##
+## Developments ##
 
 To generate a single language for local development:
 
