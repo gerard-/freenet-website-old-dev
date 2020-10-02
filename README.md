@@ -9,7 +9,7 @@ This website is being translated as the
 
 To contribute without Transifex:
 
-* Fork this repository and create a checkout
+* Fork this repository and create a checkout and tell me the issue 
 * Run update_po.sh from the root directory
 * A freenet_site.pot file is generated in the root directory, you can import this in the existing translation or use it as a basis for a new translation. If you've started your translation before 6-6-2015 you may need to run your own .po file through clean_po.py to get a clean merge (and not lose any translations).
 * When you done you can save your translation as locale/*language*/LC_MESSAGES/freenet_site.po
